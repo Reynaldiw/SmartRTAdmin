@@ -1,11 +1,11 @@
 package com.reynaldiwijaya.smartrtadmin.Utills;
 
 public class Constants  {
-    public static final String BASE_URL = "http://192.168.71.52/Dinacom/";
-    public static final String IMAGE_USER_URL = "http://192.168.71.52/Dinacom/upload/";
-    public static final String IMAGE_INFORMASI_URL = "http://192.168.71.52/Dinacom/upload_informasi/";
-    public static final String IMAGE_STORE_URL = "http://192.168.71.52/Dinacom/storeupload/";
-    public static final String UPLOAD_REGISTER_URL = "http://192.168.71.52/Dinacom/register.php";
+    public static final String BASE_URL = "https://lombadinacom.000webhostapp.com/Dinacom/";
+    public static final String IMAGE_USER_URL = "https://lombadinacom.000webhostapp.com/Dinacom/upload/";
+    public static final String IMAGE_INFORMASI_URL = "https://lombadinacom.000webhostapp.com/Dinacom/upload_informasi/";
+    public static final String IMAGE_STORE_URL = "https://lombadinacom.000webhostapp.com/Dinacom/storeupload/";
+    public static final String UPLOAD_REGISTER_URL = "https://lombadinacom.000webhostapp.com/Dinacom/register.php";
 
     public static final String JUDUL = "judul";
     public static final String CONTENT = "content";

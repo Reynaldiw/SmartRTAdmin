@@ -6,6 +6,6 @@
         android:id="@+id/logout"
         android:orderInCategory="100"
         android:title="@string/logout"
-        android:icon="@drawable/logout"
+        android:icon="@drawable/logouts"
         app:showAsAction="always" />
 </menu>

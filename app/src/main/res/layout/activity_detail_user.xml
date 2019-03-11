@@ -107,7 +107,8 @@
                                 android:text="CEO Apple"
                                 android:textStyle="bold"
                                 android:textSize="20sp"
-                                android:paddingTop="10dp" />
+                                android:paddingTop="10dp"
+                                android:textAlignment="center"/>
 
                         </LinearLayout>
                     </LinearLayout>

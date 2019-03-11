@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/swipeRefresh">
+    android:id="@+id/swipeRefresh"
+    android:background="@color/colorPrimaryDark">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,15 +20,19 @@
 
     </android.support.v7.widget.RecyclerView>
 
-    <TextView
-        android:id="@+id/tv_pesan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tidak ada Data"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:visibility="gone"/>
+        <TextView
+            android:id="@+id/tv_pesan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kosong"
+            android:fontFamily="casual"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_margin="25dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:visibility="gone"/>
 
     </LinearLayout>
 

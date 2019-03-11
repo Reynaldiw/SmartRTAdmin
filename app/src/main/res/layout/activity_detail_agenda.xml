@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".View.DetailAgendaActivity"
     android:layout_margin="8dp"
     app:cardCornerRadius="8dp"
@@ -54,7 +54,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_home_black_24dp"/>
+                android:src="@drawable/ic_home_white_24dp"/>
 
             <TextView
                 android:id="@+id/tv_tempat"
@@ -78,7 +78,8 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_date_range_black_24dp"/>
+                android:src="@drawable/ic_date_range_white_24dp"
+                />
 
             <TextView
                 android:id="@+id/tv_tanggal"
@@ -92,22 +93,23 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/btn_konfirmasi"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_gravity="bottom|center"
+            android:background="@drawable/butt_putih"
+            android:text="Confirmation"
+            android:layout_marginTop="30dp"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black" />
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_konfirmasi"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="16dp"
-        android:layout_weight="1"
-        android:layout_gravity="bottom"
-        android:background="@drawable/butt_putih"
-        android:text="Confirmation"
-        android:layout_marginTop="30dp"
-        android:textAllCaps="false"
-        android:textColor="@android:color/black" />
+
 
 </android.support.v7.widget.CardView>

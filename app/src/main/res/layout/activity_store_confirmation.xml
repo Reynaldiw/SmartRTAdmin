@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.StoreConfirmationActivity">
+    tools:context=".View.StoreConfirmationActivity"
+    android:background="@color/colorPrimaryDark">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_store"
@@ -17,10 +18,14 @@
         android:id="@+id/tv_pesan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tidak ada Data"
+        android:text="Kosong"
+        android:fontFamily="casual"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:layout_margin="25dp"
+        android:layout_gravity="center"
         android:gravity="center"
+        android:textColor="#fff"
         android:visibility="gone"/>
 
 </android.support.constraint.ConstraintLayout>

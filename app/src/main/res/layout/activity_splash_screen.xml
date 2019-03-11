@@ -5,23 +5,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".Ui.SplashScreen">
+    tools:context=".Ui.SplashScreen"
+    android:background="@color/colorPrimaryDark">
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/smartlogoadmin"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="SmaRT"
-        android:textStyle="bold"
-        android:textColor="#000"
-        android:textSize="50sp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Coming Soon"
+        android:text="Be a smart leader"
         android:gravity="center"
         android:layout_marginTop="8dp"
-        android:textSize="30sp"/>
+        android:textSize="25sp"
+        android:textColor="#fff"
+        android:fontFamily="casual"/>
 
 </LinearLayout>
