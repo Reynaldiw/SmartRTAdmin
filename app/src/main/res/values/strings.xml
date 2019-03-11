@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">SMART ADMIN</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign up.</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="konfirmasi">Konfirmasi</string>
+    <string name="logout">Logout</string>
+    <string name="tanggal_lapor">Tanggal Lapor :</string>
+    <string name="pelapor">Pelapor :</string>
+    <string name="nama_lengkap">Nama lengkap</string>
+    <string name="nomor_ktp">Nomor KTP</string>
+    <string name="alamat">Alamat</string>
+    <string name="jenis_kelamin">Jenis Kelamin</string>
+    <string name="nomor_telfon">Nomor Telfon</string>
+    <string name="email">Email</string>
+    <string name="send">Send</string>
+    <string name="error_message">Field tidak boleh kosong</string>
+
+    <array name="item">
+        <item>Ketua RT</item>
+        <item>Sekretaris</item>
+        <item>Bendahara</item>
+        <item>Warga</item>
+    </array>
+
+</resources>
