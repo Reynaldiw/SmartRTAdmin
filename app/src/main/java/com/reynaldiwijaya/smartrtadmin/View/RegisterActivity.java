@@ -12,9 +12,11 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -22,6 +24,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -37,6 +41,7 @@ import com.reynaldiwijaya.smartrtadmin.Presenter.Register.RegisterPresenter;
 import com.reynaldiwijaya.smartrtadmin.R;
 import com.reynaldiwijaya.smartrtadmin.Utills.Constants;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Array;
 import java.util.Calendar;
@@ -46,6 +51,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import es.dmoral.toasty.Toasty;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 public class RegisterActivity extends AppCompatActivity implements RegisterContract.View {
 
@@ -97,9 +105,16 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     private String no_ktp, no_tlp, konfirmasi;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setColorMode(getResources().getColor(R.color.colorPrimaryDark));
+
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
 
@@ -262,8 +277,28 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     }
 
     private void sendData() {
-        registerPresenter.doRegister(nama_lengkap, no_ktp, edtAlamat, edtStatus, tglLahir, jenkel, edtProfesi,
-                no_tlp, email, username, password, path = getPath(filepath), konfirmasi, konfirmasi);
+
+        path = getPath(filepath);
+        File imageFile = new File(path);
+        RequestBody image = RequestBody.create(MediaType.parse("multipart/form-data"), imageFile);
+        MultipartBody.Part partImage = MultipartBody.Part.createFormData("foto", imageFile.getName(), image);
+
+        RequestBody nama = RequestBody.create(MediaType.parse("multipart/form-data"), nama_lengkap);
+        RequestBody ktp = RequestBody.create(MediaType.parse("multipart/form-data"), no_ktp);
+        RequestBody alamat = RequestBody.create(MediaType.parse("multipart/form-data"),edtAlamat);
+        RequestBody status = RequestBody.create(MediaType.parse("multipart/form-data"), edtStatus);
+        RequestBody lahir = RequestBody.create(MediaType.parse("multipart/form-data"), tglLahir);
+        RequestBody kelamin = RequestBody.create(MediaType.parse("multipart/form-data"), jenkel);
+        RequestBody profesi = RequestBody.create(MediaType.parse("multipart/form-data"), edtProfesi);
+        RequestBody telfon = RequestBody.create(MediaType.parse("multipart/form-data"), no_tlp);
+        RequestBody emailUser = RequestBody.create(MediaType.parse("multipart/form-data"), email);
+        RequestBody usernameUser = RequestBody.create(MediaType.parse("multipart/form-data"), username);
+        RequestBody passwordUser = RequestBody.create(MediaType.parse("multipart/form-data"), password);
+        RequestBody konfirmasiUser = RequestBody.create(MediaType.parse("multipart/form-data"), konfirmasi);
+        RequestBody levelUser = RequestBody.create(MediaType.parse("multipart/form-data"), level);
+
+        registerPresenter.doRegister(nama, ktp, alamat, status, lahir, kelamin, profesi, telfon, emailUser,
+                usernameUser, passwordUser, partImage, konfirmasiUser, levelUser);
     }
 
     private void getData() {

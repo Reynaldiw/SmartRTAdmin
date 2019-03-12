@@ -15,10 +15,13 @@ import java.net.MalformedURLException;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegisterPresenter implements RegisterContract.Presenter {
     private RegisterContract.View view;
     private Context context;
+    private ApiInterface apiInterface;
 
     public RegisterPresenter(RegisterContract.View view, Context context) {
         this.view = view;
@@ -26,38 +29,35 @@ public class RegisterPresenter implements RegisterContract.Presenter {
     }
 
     @Override
-    public void doRegister(String nama, String no_ktp, String alamat, String status, String tgl_lahir,
-                           String jenkel, String profesi, String no_tlp, String email, String username,
-                           String password, String path, String konfirmasi, String level) {
-
+    public void doRegister(RequestBody nama, RequestBody no_ktp, RequestBody alamat, RequestBody status, RequestBody tgl_lahir, RequestBody jenkel, RequestBody profesi, RequestBody no_tlp, RequestBody email, RequestBody username, RequestBody password, MultipartBody.Part path, RequestBody konfirmasi, RequestBody level) {
         view.showProgress();
+        apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<ResponseRegister> call = apiInterface.registerUser(nama, no_ktp, alamat, status, tgl_lahir, jenkel, profesi, no_tlp, email, username, password, konfirmasi, level, path);
+        call.enqueue(new Callback<ResponseRegister>() {
+            @Override
+            public void onResponse(Call<ResponseRegister> call, Response<ResponseRegister> response) {
+                view.hideProgress();
 
-        try {
-            new MultipartUploadRequest(context, Constants.UPLOAD_REGISTER_URL)
-                    .addFileToUpload(path, "foto")
-                    .addParameter("nama_lengkap", nama)
-                    .addParameter("no_ktp", no_ktp)
-                    .addParameter("alamat", alamat)
-                    .addParameter("status", status)
-                    .addParameter("tgl_lahir", tgl_lahir)
-                    .addParameter("jenkel", jenkel)
-                    .addParameter("profesi", profesi)
-                    .addParameter("no_tlp", no_tlp)
-                    .addParameter("email", email)
-                    .addParameter("username", username)
-                    .addParameter("password", password)
-                    .addParameter("konfirmasi", konfirmasi)
-                    .addParameter("level", level)
-                    .setMaxRetries(2)
-                    .startUpload();
-            view.hideProgress();
-            view.showSuccesMessage("Succes to Register");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-            view.hideProgress();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            view.hideProgress();
-        }
+                ResponseRegister responseRegister = response.body();
+
+                if (responseRegister.getResult().equals("-1")) {
+                    view.showFailureMessage("Username telah terdaftar");
+                }
+                if (responseRegister.getResult().equals("0")) {
+                    view.showFailureMessage("Gagal Register");
+                }
+                if (responseRegister.getResult().equals("1")) {
+                    view.showSuccesMessage("Berhasil Register");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseRegister> call, Throwable t) {
+                view.hideProgress();
+
+                view.showFailureMessage(t.getMessage());
+            }
+        });
+
     }
 }

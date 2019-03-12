@@ -12,10 +12,10 @@ public interface RegisterContract {
     }
 
     interface Presenter {
-        void doRegister(String nama, String no_ktp, String alamat, String status,
-                        String tgl_lahir, String jenkel, String profesi, String no_tlp,
-                        String email, String username, String password, String path,
-                        String konfirmasi, String level);
+        void doRegister(RequestBody nama, RequestBody no_ktp, RequestBody alamat, RequestBody status,
+                        RequestBody tgl_lahir, RequestBody jenkel, RequestBody profesi, RequestBody no_tlp,
+                        RequestBody email, RequestBody username, RequestBody password, MultipartBody.Part path,
+                        RequestBody konfirmasi, RequestBody level);
 
 
     }

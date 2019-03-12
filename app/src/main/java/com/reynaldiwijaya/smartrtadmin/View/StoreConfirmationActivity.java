@@ -1,11 +1,15 @@
 package com.reynaldiwijaya.smartrtadmin.View;
 
 import android.app.ProgressDialog;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.reynaldiwijaya.smartrtadmin.Adapter.StoreAdapter;
@@ -32,9 +36,16 @@ public class StoreConfirmationActivity extends AppCompatActivity implements Stor
     private StorePresenter storePresenter = new StorePresenter(this);
     private List<StoreItem> storeItems = new ArrayList<>();
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setColorMode(getResources().getColor(R.color.colorPrimaryDark));
+
         setContentView(R.layout.activity_store_confirmation);
         ButterKnife.bind(this);
     }

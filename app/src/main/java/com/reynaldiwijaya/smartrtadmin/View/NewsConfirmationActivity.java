@@ -1,13 +1,17 @@
 package com.reynaldiwijaya.smartrtadmin.View;
 
 import android.app.ProgressDialog;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,10 +39,20 @@ public class NewsConfirmationActivity extends AppCompatActivity implements NewsC
     private List<NewsItem> newsItems = new ArrayList<>();
     private NewsPresenter newsPresenter = new NewsPresenter(this);
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setColorMode(getResources().getColor(R.color.colorPrimaryDark));
+        
         setContentView(R.layout.activity_news_confirmation);
+
+
+
         ButterKnife.bind(this);
 
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

@@ -78,4 +78,23 @@ public interface ApiInterface {
             @Field("id_kritik") String id,
             @Field("reply") String reply
     );
+
+    @Multipart
+    @POST("register.php")
+    Call<ResponseRegister> registerUser(
+            @Part("nama_lengkap") RequestBody nama,
+            @Part("no_ktp") RequestBody nomor_ktp,
+            @Part("alamat") RequestBody alamat,
+            @Part("status") RequestBody status,
+            @Part("tgl_lahir") RequestBody tgl_lahir,
+            @Part("jenkel") RequestBody jenkel,
+            @Part("profesi") RequestBody profesi,
+            @Part("no_tlp") RequestBody no_tlp,
+            @Part("email") RequestBody email,
+            @Part("username") RequestBody username,
+            @Part("password") RequestBody password,
+            @Part("konfirmasi") RequestBody konfirmasi,
+            @Part("level") RequestBody level,
+            @Part MultipartBody.Part foto
+    );
 }
